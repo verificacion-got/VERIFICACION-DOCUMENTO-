@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verificación de Certificados</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f8f9fa; /* Color de fondo claro */
+  }
+
+  .container {
+    width: 100%;
+    max-width: 600px;
+    background-color: #ffffff;
+    padding: 40px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  /* --- ESTILOS DE LA PANTALLA 1 (FORMULARIO) --- */
+  .card {
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 30px 40px;
+    margin: 0 auto;
+    width: 380px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  }
+
+  .header-box {
+    background-color: #f4f8fb;
+    border: 1px solid #e6eff5;
+    border-radius: 4px;
+    padding: 12px;
+    margin-bottom: 25px;
+  }
+
+  .header-box h2 {
+    margin: 0;
+    color: #4a7ab5;
+    font-size: 16px;
+    font-weight: normal;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+
+  label {
+    display: block;
+    font-size: 11px;
+    color: #666666;
+    margin-bottom: 5px;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #cccccc;
+    border-radius: 3px;
+    font-size: 12px;
+    box-sizing: border-box;
+  }
+
+  .btn-consultar {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 8px 25px;
+    border-radius: 3px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+
+  /* --- ESTILOS DE LA PANTALLA 2 (RESULTADO) --- */
+  #resultado {
+    display: none; /* Oculto por defecto */
+  }
+
+  .alert-success {
+    background-color: #f8fcf8;
+    border: 1px solid #e0ede0;
+    color: #72a376;
+    padding: 15px;
+    font-size: 13px;
+    border-radius: 4px;
+    margin-bottom: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .pdf-icon-container {
+    margin-top: 40px;
+  }
+
+  .pdf-icon {
+    background-color: #e0e0e0;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 4px;
+    display: inline-block;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .file-name {
+    display: block;
+    color: #555;
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+
+  .btn-abrir {
+    background-color: #4285f4;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  
+  <div id="pantalla-inicial">
+    <div class="card">
+      <div class="header-box">
+        <h2>Verificación de Certificados</h2>
+      </div>
+      
+      <div class="form-group">
+        <label>Folio:</label>
+        <input type="text" id="inputFolio" placeholder="Ej: 500004443232">
+      </div>
+
+      <div class="form-group">
+        <label>Código de Verificación:</label>
+        <input type="text" id="inputCodigo" placeholder="Ej: 2rR4c56Cv332">
+      </div>
+
+      <button class="btn-consultar" onclick="verificarDatos()">Consultar</button>
+    </div>
+  </div>
+
+  <div id="resultado">
+    <div class="alert-success">
+      El certificado es válido, verifique los datos en el documento generado. <span style="font-size: 16px;">✔</span>
+    </div>
+
+    <div class="pdf-icon-container">
+      <div class="pdf-icon">PDF</div>
+      <span class="file-name">verCopiaPdf.srcei</span>
+      <a href="#" class="btn-abrir">Abrir</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function verificarDatos() {
+    // Obtenemos los valores ingresados
+    const folio = document.getElementById('inputFolio').value;
+    const codigo = document.getElementById('inputCodigo').value;
+
+    // Valores correctos según tu solicitud
+    const folioCorrecto = "500676750328";
+    const codigoCorrecto = "2815b3368f84";
+
+    if (folio === folioCorrecto && codigo === codigoCorrecto) {
+      // Si son correctos, intercambiamos las pantallas
+      document.getElementById('pantalla-inicial').style.display = 'none';
+      document.getElementById('resultado').style.display = 'block';
+    } else {
+      alert("Los datos ingresados no son correctos. Por favor, intente de nuevo.");
+    }
+  }
+</script>
+
+</body>
+</html>
