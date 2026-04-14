@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Verificación de Certificados</title>
+<title>Verificación de Certificados Adaptable</title>
 <style>
-  /* Configuración General */
+  /* --- Estilos Globales Mobile-First --- */
   body {
     font-family: 'Segoe UI', Arial, sans-serif;
     display: flex;
@@ -13,27 +13,38 @@
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    background-color: #f0f2f5; /* Fondo ligeramente gris para resaltar el blanco */
+    background-color: #f0f2f5; /* Fondo ligeramente gris para contraste */
   }
 
   .main-wrapper {
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
     padding: 20px;
     box-sizing: border-box;
   }
 
-  /* --- PANTALLA 1: EL FORMULARIO --- */
+  /* --- PANTALLA 1: EL FORMULARIO (Mobile-First) --- */
   .card {
     background-color: #ffffff;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
-    padding: 30px;
+    padding: 25px; /* Reducido en móviles */
     width: 100%;
-    max-width: 420px; /* Ancho máximo en PC */
+    max-width: 380px; /* Tamaño máximo en móviles */
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     box-sizing: border-box;
+    transition: all 0.3s ease; /* Para una transición suave al cambiar de tamaño */
+  }
+
+  /* ESTILOS ESPECÍFICOS PARA COMPUTADORA */
+  @media (min-width: 768px) {
+    .card {
+      padding: 40px;
+      max-width: 750px; /* CRECE MUCHO MÁS EN PC */
+      width: 60%; /* Ocupa una porción mayor del ancho */
+    }
   }
 
   .header-box {
@@ -48,8 +59,15 @@
   .header-box h2 {
     margin: 0;
     color: #4a7ab5;
-    font-size: 18px;
+    font-size: 1.1rem; /* Usar rem para accesibilidad y escala */
     font-weight: 500;
+  }
+
+  /* Escalar textos en PC */
+  @media (min-width: 768px) {
+    .header-box h2 {
+      font-size: 1.5rem;
+    }
   }
 
   .form-group {
@@ -59,10 +77,17 @@
 
   label {
     display: block;
-    font-size: 12px;
+    font-size: 0.8rem;
     color: #666;
     margin-bottom: 6px;
     font-weight: bold;
+  }
+
+  /* Escalar etiquetas en PC */
+  @media (min-width: 768px) {
+    label {
+      font-size: 1rem;
+    }
   }
 
   input[type="text"] {
@@ -70,10 +95,18 @@
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 14px;
+    font-size: 0.9rem;
     box-sizing: border-box;
     outline: none;
     transition: border-color 0.3s;
+  }
+
+  /* Escalar campos de entrada en PC */
+  @media (min-width: 768px) {
+    input[type="text"] {
+      padding: 15px;
+      font-size: 1.1rem;
+    }
   }
 
   input[type="text"]:focus {
@@ -87,17 +120,18 @@
     width: 100%; /* Botón ancho en móvil */
     padding: 12px;
     border-radius: 4px;
-    font-size: 14px;
+    font-size: 0.9rem;
     font-weight: bold;
     cursor: pointer;
     transition: background 0.3s;
   }
 
-  /* Ajuste de botón para PC */
-  @media (min-width: 600px) {
+  /* Escalar botón y centrarlo en PC */
+  @media (min-width: 768px) {
     .btn-consultar {
       width: auto;
-      padding: 10px 40px;
+      padding: 15px 50px;
+      font-size: 1.1rem;
       display: block;
       margin: 0 auto;
     }
@@ -107,11 +141,7 @@
   #resultado {
     display: none;
     width: 100%;
-    max-width: 800px;
-    background: white;
-    padding: 40px 20px;
     text-align: center;
-    min-height: 400px;
   }
 
   .alert-success {
@@ -119,14 +149,27 @@
     border: 1px solid #e0ede0;
     color: #5d8a60;
     padding: 15px;
-    font-size: 14px;
+    font-size: 0.9rem;
     border-radius: 4px;
-    margin-bottom: 50px;
-    display: inline-flex;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
     align-items: center;
     gap: 10px;
     width: 90%;
-    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+  }
+
+  /* Escalar alerta en PC */
+  @media (min-width: 768px) {
+    .alert-success {
+      font-size: 1.2rem;
+      padding: 25px;
+      max-width: 800px;
+      margin-bottom: 60px;
+    }
   }
 
   .pdf-section {
@@ -140,14 +183,30 @@
     border-radius: 4px;
     display: inline-block;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 1rem;
+  }
+
+  /* Escalar icono PDF en PC */
+  @media (min-width: 768px) {
+    .pdf-icon {
+      padding: 15px 22px;
+      font-size: 1.2rem;
+    }
   }
 
   .file-name {
     display: block;
     margin: 15px 0;
     color: #444;
-    font-size: 16px;
+    font-size: 1rem;
+  }
+
+  /* Escalar nombre archivo en PC */
+  @media (min-width: 768px) {
+    .file-name {
+      font-size: 1.3rem;
+      margin: 20px 0;
+    }
   }
 
   .btn-abrir {
@@ -156,25 +215,24 @@
     border: none;
     padding: 12px 45px;
     border-radius: 25px;
-    font-size: 15px;
+    font-size: 1rem;
     text-decoration: none;
     display: inline-block;
     transition: transform 0.2s;
+  }
+
+  /* Escalar botón abrir en PC */
+  @media (min-width: 768px) {
+    .btn-abrir {
+      padding: 15px 60px;
+      font-size: 1.2rem;
+    }
   }
 
   .btn-abrir:active {
     transform: scale(0.95);
   }
 
-  /* Ajustes para móviles pequeños */
-  @media (max-width: 400px) {
-    .card {
-      padding: 20px 15px;
-    }
-    .header-box h2 {
-      font-size: 16px;
-    }
-  }
 </style>
 </head>
 <body>
@@ -202,7 +260,7 @@
   <div id="resultado">
     <div class="alert-success">
       <span>El certificado es válido, verifique los datos en el documento generado.</span>
-      <b style="color: #28a745;">✔</b>
+      <b style="color: #28a745; font-size: 1.2rem;">✔</b>
     </div>
 
     <div class="pdf-section">
@@ -219,14 +277,14 @@
     const folio = document.getElementById('inputFolio').value.trim();
     const codigo = document.getElementById('inputCodigo').value.trim();
 
-    // Datos exactos que pediste
+    // Datos de prueba (mantener igual)
     const folioCorrecto = "500676750328";
     const codigoCorrecto = "2815b3368f84";
 
     if (folio === folioCorrecto && codigo === codigoCorrecto) {
       document.getElementById('pantalla-inicial').style.display = 'none';
       document.getElementById('resultado').style.display = 'block';
-      // Cambiamos el fondo a blanco total para la segunda pantalla como en la imagen
+      // Cambiar fondo a blanco total en la segunda pantalla
       document.body.style.backgroundColor = "#ffffff";
     } else {
       alert("Los datos no coinciden. Verifique el Folio y el Código.");
