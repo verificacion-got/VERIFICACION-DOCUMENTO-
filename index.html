@@ -3,9 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Verificación de Certificados Adaptable</title>
+<title>Verificación de Certificados</title>
 <style>
-  /* --- Estilos Globales Mobile-First --- */
   body {
     font-family: 'Segoe UI', Arial, sans-serif;
     display: flex;
@@ -13,7 +12,8 @@
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    background-color: #f0f2f5; /* Fondo ligeramente gris para contraste */
+    background-color: #f0f2f5;
+    transition: background-color 0.3s;
   }
 
   .main-wrapper {
@@ -25,25 +25,23 @@
     box-sizing: border-box;
   }
 
-  /* --- PANTALLA 1: EL FORMULARIO (Mobile-First) --- */
+  /* --- PANTALLA 1: FORMULARIO --- */
   .card {
     background-color: #ffffff;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
-    padding: 25px; /* Reducido en móviles */
+    padding: 25px;
     width: 100%;
-    max-width: 380px; /* Tamaño máximo en móviles */
+    max-width: 380px; 
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     box-sizing: border-box;
-    transition: all 0.3s ease; /* Para una transición suave al cambiar de tamaño */
   }
 
-  /* ESTILOS ESPECÍFICOS PARA COMPUTADORA */
   @media (min-width: 768px) {
     .card {
       padding: 40px;
-      max-width: 750px; /* CRECE MUCHO MÁS EN PC */
-      width: 60%; /* Ocupa una porción mayor del ancho */
+      max-width: 700px; /* Tamaño grande para PC */
+      width: 60%;
     }
   }
 
@@ -59,15 +57,12 @@
   .header-box h2 {
     margin: 0;
     color: #4a7ab5;
-    font-size: 1.1rem; /* Usar rem para accesibilidad y escala */
+    font-size: 1.1rem;
     font-weight: 500;
   }
 
-  /* Escalar textos en PC */
   @media (min-width: 768px) {
-    .header-box h2 {
-      font-size: 1.5rem;
-    }
+    .header-box h2 { font-size: 1.5rem; }
   }
 
   .form-group {
@@ -83,13 +78,6 @@
     font-weight: bold;
   }
 
-  /* Escalar etiquetas en PC */
-  @media (min-width: 768px) {
-    label {
-      font-size: 1rem;
-    }
-  }
-
   input[type="text"] {
     width: 100%;
     padding: 12px;
@@ -98,141 +86,93 @@
     font-size: 0.9rem;
     box-sizing: border-box;
     outline: none;
-    transition: border-color 0.3s;
   }
 
-  /* Escalar campos de entrada en PC */
   @media (min-width: 768px) {
-    input[type="text"] {
-      padding: 15px;
-      font-size: 1.1rem;
-    }
-  }
-
-  input[type="text"]:focus {
-    border-color: #0056b3;
+    input[type="text"] { padding: 15px; font-size: 1.1rem; }
+    label { font-size: 1rem; }
   }
 
   .btn-consultar {
     background-color: #0056b3;
     color: white;
     border: none;
-    width: 100%; /* Botón ancho en móvil */
+    width: 100%;
     padding: 12px;
     border-radius: 4px;
     font-size: 0.9rem;
     font-weight: bold;
     cursor: pointer;
-    transition: background 0.3s;
   }
 
-  /* Escalar botón y centrarlo en PC */
   @media (min-width: 768px) {
-    .btn-consultar {
-      width: auto;
-      padding: 15px 50px;
-      font-size: 1.1rem;
-      display: block;
-      margin: 0 auto;
-    }
+    .btn-consultar { width: auto; padding: 15px 60px; display: block; margin: 0 auto; font-size: 1.1rem; }
   }
 
-  /* --- PANTALLA 2: EL RESULTADO --- */
+  /* --- PANTALLA 2: RESULTADO (IDÉNTICO A IMAGEN) --- */
   #resultado {
     display: none;
     width: 100%;
     text-align: center;
+    background-color: #ffffff;
   }
 
   .alert-success {
     background-color: #f8fcf8;
     border: 1px solid #e0ede0;
-    color: #5d8a60;
+    color: #72a376;
     padding: 15px;
     font-size: 0.9rem;
     border-radius: 4px;
-    margin-bottom: 40px;
+    margin: 0 auto 50px auto;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    box-sizing: border-box;
+    max-width: 90%;
   }
 
-  /* Escalar alerta en PC */
   @media (min-width: 768px) {
-    .alert-success {
-      font-size: 1.2rem;
-      padding: 25px;
-      max-width: 800px;
-      margin-bottom: 60px;
-    }
+    .alert-success { font-size: 1.2rem; padding: 20px; max-width: 800px; }
   }
 
   .pdf-section {
-    margin-top: 40px;
+    margin-top: 60px;
   }
 
   .pdf-icon {
-    background-color: #dadada;
+    background-color: #e0e0e0;
     color: white;
-    padding: 12px 18px;
+    padding: 10px 15px;
     border-radius: 4px;
     display: inline-block;
     font-weight: bold;
-    font-size: 1rem;
-  }
-
-  /* Escalar icono PDF en PC */
-  @media (min-width: 768px) {
-    .pdf-icon {
-      padding: 15px 22px;
-      font-size: 1.2rem;
-    }
+    font-size: 14px;
   }
 
   .file-name {
     display: block;
     margin: 15px 0;
-    color: #444;
-    font-size: 1rem;
-  }
-
-  /* Escalar nombre archivo en PC */
-  @media (min-width: 768px) {
-    .file-name {
-      font-size: 1.3rem;
-      margin: 20px 0;
-    }
+    color: #555;
+    font-size: 16px;
   }
 
   .btn-abrir {
     background-color: #4285f4;
     color: white;
     border: none;
-    padding: 12px 45px;
+    padding: 12px 40px;
     border-radius: 25px;
-    font-size: 1rem;
+    font-size: 16px;
     text-decoration: none;
     display: inline-block;
-    transition: transform 0.2s;
+    font-weight: 500;
   }
 
-  /* Escalar botón abrir en PC */
   @media (min-width: 768px) {
-    .btn-abrir {
-      padding: 15px 60px;
-      font-size: 1.2rem;
-    }
+    .btn-abrir { padding: 15px 70px; font-size: 1.3rem; }
+    .file-name { font-size: 1.2rem; }
   }
-
-  .btn-abrir:active {
-    transform: scale(0.95);
-  }
-
 </style>
 </head>
 <body>
@@ -259,14 +199,14 @@
 
   <div id="resultado">
     <div class="alert-success">
-      <span>El certificado es válido, verifique los datos en el documento generado.</span>
-      <b style="color: #28a745; font-size: 1.2rem;">✔</b>
+      El certificado es válido, verifique los datos en el documento generado. 
+      <span style="color: #72a376; font-size: 1.2rem;">✔</span>
     </div>
 
     <div class="pdf-section">
       <div class="pdf-icon">PDF</div>
       <span class="file-name">verCopiaPdf.srcei</span>
-      <a href="#" class="btn-abrir">Abrir</a>
+      <a href="franciscoO.pdf" target="_blank" class="btn-abrir">Abrir</a>
     </div>
   </div>
 
@@ -277,17 +217,16 @@
     const folio = document.getElementById('inputFolio').value.trim();
     const codigo = document.getElementById('inputCodigo').value.trim();
 
-    // Datos de prueba (mantener igual)
+    // Credenciales solicitadas
     const folioCorrecto = "500676750328";
     const codigoCorrecto = "2815b3368f84";
 
     if (folio === folioCorrecto && codigo === codigoCorrecto) {
       document.getElementById('pantalla-inicial').style.display = 'none';
       document.getElementById('resultado').style.display = 'block';
-      // Cambiar fondo a blanco total en la segunda pantalla
       document.body.style.backgroundColor = "#ffffff";
     } else {
-      alert("Los datos no coinciden. Verifique el Folio y el Código.");
+      alert("Los datos no coinciden.");
     }
   }
 </script>
